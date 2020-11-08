@@ -42,7 +42,7 @@ function! s:extractKeymaps(file) abort
     for line in l:lines
       let l:ln += 1
       let l:annotation = matchlist(line, '\v^%(\s+)?\"\ \@\((\S.*)\)')
-      if empty(l:annotation) | continue | endif
+      if empty(l:annotation) || len(l:lines) == l:ln | continue | endif
       let l:match = matchlist(l:lines[l:ln], '\v^%(\s+)?(%([nvxl])n|%([nvxoilc])m|%([oict])no|%([lt])ma|%([sic])nor|%([nvsxoilct])?%(nore)?map|map!)\s([^ ]+)\s(.*)$')
       if empty(l:match) | continue | endif
       let l:match = l:match[:3] + [l:annotation[1], l:filePath, l:ln]
