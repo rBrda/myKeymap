@@ -41,9 +41,9 @@ function! s:extractKeymaps(file) abort
     let l:ln = 0
     for line in l:lines
       let l:ln += 1
-      let l:annotation = matchlist(line, '\v^%(\s+)?\"\ \@\((\S.*)\)')
+      let l:annotation = matchlist(line, '\v^%([ \t]*)\"%([ \t]+)\@\((\S.*)\)')
       if empty(l:annotation) || len(l:lines) == l:ln | continue | endif
-      let l:match = matchlist(l:lines[l:ln], '\v^%(\s+)?(%([nvxl])n|%([nvxoilc])m|%([oict])no|%([lt])ma|%([sic])nor|%([nvsxoilct])?%(nore)?map|map!)\s([^ ]+)\s(.*)$')
+      let l:match = matchlist(l:lines[l:ln], '\v^%([ \t]*)(%([nvxl])n|%([nvxoilc])m|%([oict])no|%([lt])ma|%([sic])nor|%([nvsxoilct])?%(nore)?map|map!)%([ \t]+)%(%(%(\<%(buffer|nowait|silent|script|expr|unique)\>[ \t])+)?([^ \t]+))%([ \t]+)(.+)$')
       if empty(l:match) | continue | endif
       let l:match = l:match[:3] + [l:annotation[1], l:filePath, l:ln]
       call add(l:keymaps, s:createKeymapItem(l:match))
@@ -99,7 +99,7 @@ endfunction
 function! s:renderResult(value) abort
   let l:mode = s:recognizeMode(a:value['mode'])
   let l:details = s:renderDetails(a:value)
-  return printf("%s %s (mode: `%s`%s)", a:value['shortcut'], a:value['name'], l:mode, l:details)
+  return printf("%s  >  %s (mode: `%s`%s)", a:value['shortcut'], a:value['name'], l:mode, l:details)
 endfunction
 
 function! s:blackHoleSink(cmd) abort

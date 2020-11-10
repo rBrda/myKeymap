@@ -4,7 +4,7 @@ A simple plugin to list and search key mappings in (neo)vim.
 
 Based on [fzf.vim](https://github.com/junegunn/fzf.vim).
 
-![mykeymap](https://user-images.githubusercontent.com/22145465/98463978-df138280-21bf-11eb-9cdf-660698bb5fc4.png)
+![mykeymap](https://user-images.githubusercontent.com/22145465/98745430-d84d6100-23b3-11eb-8c89-10869b23e458.png)
 
 ## Usage
 
@@ -47,10 +47,6 @@ Note: you must restart your editor whenever you added or modified the annotation
 ### How to list and search your annotated key mappings?
 
 The plugin has the `MyKeymap` command for listing the annotated key mappings. They will be shown in a fzf popup window.
-
-### Limitations
-
-Currently special arguments (`<buffer>`, `<nowait>`, `<silent>`, etc.) are not handled and mappings containing them will not be processed correctly.
 
 ## Installation
 
