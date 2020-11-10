@@ -48,6 +48,10 @@ Note: you must restart your editor whenever you added or modified the annotation
 
 The plugin has the `MyKeymap` command for listing the annotated key mappings. They will be shown in a fzf popup window.
 
+### Limitations
+
+Currently special arguments (`<buffer>`, `<nowait>`, `<silent>`, etc.) are not handled and mappings containing them will not be processed correctly.
+
 ## Installation
 
 It requires [fzf.vim](https://github.com/junegunn/fzf.vim) to be installed!
