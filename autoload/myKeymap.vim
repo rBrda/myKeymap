@@ -43,7 +43,7 @@ function! s:extractKeymaps(file) abort
       let l:ln += 1
       let l:annotation = matchlist(line, '\v^%([ \t]*)\"%([ \t]+)\@\((\S.*)\)')
       if empty(l:annotation) || len(l:lines) == l:ln | continue | endif
-      let l:match = matchlist(l:lines[l:ln], '\v^%([ \t]*)(%([nvxl])n|%([nvxoilc])m|%([oict])no|%([lt])ma|%([sic])nor|%([nvsxoilct])?%(nore)?map|map!)%([ \t]+)%(%(%(\<%(buffer|nowait|silent|script|expr|unique)\>[ \t])+)?([^ \t]+))%([ \t]+)(.+)$')
+      let l:match = matchlist(l:lines[l:ln], '\v^%([ \t]*)(%([nvxl])n|%([nvxoilc])m|%([oict])no|%([lt])ma|%([sic])nor|%([nvsxoilct])?%(nore)?map|map!)%([ \t]+)%(%(%(\<%(buffer|nowait|silent|special|script|expr|unique)\>[ \t]?)+)?([^ \t]+))%([ \t]+)(.+)$')
       if empty(l:match) | continue | endif
       let l:match = l:match[:3] + [l:annotation[1], l:filePath, l:ln]
       call add(l:keymaps, s:createKeymapItem(l:match))
